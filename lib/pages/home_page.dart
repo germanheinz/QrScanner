@@ -14,8 +14,19 @@ int indexPage = 0;
 @override
 Widget build(BuildContext context) {
   return Scaffold(
+    appBar: AppBar(
+      title: Text('QR Scanner'),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.delete_forever), 
+          onPressed: (){},
+        ),
+      ],
+    ),
     body: _callPage(indexPage),
     bottomNavigationBar: _creatingButtonNavigationBar(),
+    floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    floatingActionButton: _creatingButton(),
   );
 }
 
@@ -32,7 +43,7 @@ Widget _creatingButtonNavigationBar(){
       ),
     ],
     currentIndex: indexPage,
-    selectedItemColor: Colors.amber[800],
+    selectedItemColor: Theme.of(context).primaryColor,
     onTap: (index){
       setState(() {
         indexPage = index;
@@ -48,4 +59,13 @@ Widget _callPage(int currentPage){
     default: return MapsPage();
   }
 }
+
+Widget _creatingButton(){
+  return FloatingActionButton(
+    backgroundColor: Theme.of(context).primaryColor,
+    onPressed: null,
+    child: Icon(Icons.filter_center_focus),
+  );
+}
+
 }
