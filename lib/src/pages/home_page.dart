@@ -4,6 +4,7 @@ import 'package:qrscanner/src/bloc/scan_bloc.dart';
 import 'package:qrscanner/src/models/scan_model.dart';
 import 'package:qrscanner/src/pages/directions_page.dart';
 import 'package:qrscanner/src/pages/maps_page.dart';
+import 'package:qrscanner/src/utils/utils.dart' as utils;
 
 class HomePage extends StatefulWidget {
 
@@ -14,6 +15,7 @@ class HomePage extends StatefulWidget {
 final scansBloc = new ScansBloc();
 
 class _HomePageState extends State<HomePage> {
+  
 int indexPage = 0;
 
 @override
@@ -73,12 +75,10 @@ Widget _creatingButton(){
   );
 }
 
-
-//geo:40.72423304705168,-73.89607801875003
-//https://www.google.com  
 _scanQR() async{
   print('Scan QR');
   dynamic futureString = 'http://www.google.com';
+  // geo:40.72423304705168,-73.89607801875003
   // String futureString = 'http://www.google.com';
   // try {
   //   futureString = await BarcodeScanner.scan();
@@ -90,6 +90,8 @@ _scanQR() async{
     // print('Future String: ${futureString.rawContent}');
     final scan = ScanModel(valor: futureString);
     scansBloc.saveNewScan(scan);
+    utils.openURL(scan);
   }
 }
+
 }
