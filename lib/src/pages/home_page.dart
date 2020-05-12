@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:qrscanner/pages/directions_page.dart';
-import 'package:qrscanner/pages/maps_page.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:qrscanner/src/pages/directions_page.dart';
+import 'package:qrscanner/src/pages/maps_page.dart';
 
 class HomePage extends StatefulWidget {
 
