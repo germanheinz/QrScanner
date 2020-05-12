@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:qrscanner/src/models/scan_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -17,6 +18,7 @@ class DBProvider{
     return _dataBase;
   }
 
+  //Initialiation DB
   initDB() async{
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
       
@@ -37,4 +39,24 @@ class DBProvider{
       }
     );
   }
+
+  //Create Registry 2 ways
+  //1
+  newScanRar(ScanModel scanModel) async{
+    final db = await database;
+    final res = await db.rawInsert(
+      "INSERT Into Scans(id,tipo,valor) "
+      "VALUES (${scanModel.id}, '${scanModel.tipo}', '${scanModel.valor}')"
+    );
+    return res;
+  }
+  //2
+  newScan(ScanModel scanModel) async{
+    final db = await database;
+    final res = db.insert('Scans', scanModel.toJson());
+    
+    return res;
+  }
+
+
 }
