@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:qrscanner/src/bloc/scan_bloc.dart';
 import 'package:qrscanner/src/models/scan_model.dart';
 import 'package:qrscanner/src/pages/directions_page.dart';
 import 'package:qrscanner/src/pages/maps_page.dart';
-import 'package:qrscanner/src/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget {
 
   @override
   _HomePageState createState() => _HomePageState();
 }
+
+final scansBloc = new ScansBloc();
 
 class _HomePageState extends State<HomePage> {
 int indexPage = 0;
@@ -87,7 +89,7 @@ _scanQR() async{
   if(futureString != null){
     // print('Future String: ${futureString.rawContent}');
     final scan = ScanModel(valor: futureString);
-    DBProvider.db.newScan(scan);
+    scansBloc.saveNewScan(scan);
   }
 }
 }
