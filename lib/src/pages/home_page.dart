@@ -77,7 +77,7 @@ Widget _creatingButton(){
 _scanQR() async{
   print('Scan QR');
   dynamic futureString = 'http://www.google.com';
-  //  String futureString = 'http://www.google.com';
+  // String futureString = 'http://www.google.com';
   // try {
   //   futureString = await BarcodeScanner.scan();
   // } catch (e) {
@@ -86,7 +86,6 @@ _scanQR() async{
   // print('future string $futureString');
   if(futureString != null){
     // print('Future String: ${futureString.rawContent}');
-    
     final scan = ScanModel(valor: futureString);
     DBProvider.db.newScan(scan);
   }
