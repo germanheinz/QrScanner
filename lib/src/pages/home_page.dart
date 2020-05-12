@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 final scansBloc = new ScansBloc();
 
 class _HomePageState extends State<HomePage> {
-  
+
 int indexPage = 0;
 
 @override
@@ -70,15 +70,15 @@ Widget _callPage(int currentPage){
 Widget _creatingButton(){
   return FloatingActionButton(
     backgroundColor: Theme.of(context).primaryColor,
-    onPressed: _scanQR,
+    onPressed: () => _scanQR(context),
     child: Icon(Icons.filter_center_focus),
   );
 }
 
-_scanQR() async{
+_scanQR(BuildContext context) async{
   print('Scan QR');
-  dynamic futureString = 'http://www.google.com';
-  // geo:40.72423304705168,-73.89607801875003
+  //dynamic futureString = 'http://www.google.com';
+  dynamic futureString = 'geo:40.72423304705168,-73.89607801875003';
   // String futureString = 'http://www.google.com';
   // try {
   //   futureString = await BarcodeScanner.scan();
@@ -90,7 +90,7 @@ _scanQR() async{
     // print('Future String: ${futureString.rawContent}');
     final scan = ScanModel(valor: futureString);
     scansBloc.saveNewScan(scan);
-    utils.openURL(scan);
+    utils.openURL(context, scan);
   }
 }
 

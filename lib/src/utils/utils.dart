@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:qrscanner/src/models/scan_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-openURL(ScanModel scanModel) async {
+openURL(BuildContext context, ScanModel scanModel) async {
 
   if(scanModel.tipo == 'http'){
     if (await canLaunch(scanModel.valor)) {
@@ -9,5 +10,7 @@ openURL(ScanModel scanModel) async {
     } else {
       throw 'Could not launch $scanModel.valor';
     }
+  }else{
+    Navigator.pushNamed(context, 'map', arguments: scanModel);
   }
 }
