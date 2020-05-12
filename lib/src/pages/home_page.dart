@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:qrscanner/src/models/scan_model.dart';
 import 'package:qrscanner/src/pages/directions_page.dart';
 import 'package:qrscanner/src/pages/maps_page.dart';
+import 'package:qrscanner/src/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -69,19 +71,24 @@ Widget _creatingButton(){
   );
 }
 
+
+//geo:40.72423304705168,-73.89607801875003
+//https://www.google.com  
 _scanQR() async{
-  //geo:40.72423304705168,-73.89607801875003
-  
   print('Scan QR');
-  dynamic futureString = '';
-  try {
-    futureString = await BarcodeScanner.scan();
-  } catch (e) {
-    futureString = e.toString();
-  }
-  print('future string $futureString');
+  dynamic futureString = 'http://www.google.com';
+  //  String futureString = 'http://www.google.com';
+  // try {
+  //   futureString = await BarcodeScanner.scan();
+  // } catch (e) {
+  //   futureString = e.toString();
+  // }
+  // print('future string $futureString');
   if(futureString != null){
-    print('Future String: ${futureString.rawContent}');
+    // print('Future String: ${futureString.rawContent}');
+    
+    final scan = ScanModel(valor: futureString);
+    DBProvider.db.newScan(scan);
   }
 }
 }

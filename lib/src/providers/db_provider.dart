@@ -1,10 +1,9 @@
 import 'dart:io';
 
+import 'package:path/path.dart';
 import 'package:qrscanner/src/models/scan_model.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-
 class DBProvider{
   static Database _dataBase;
   static final DBProvider db = DBProvider._private();
@@ -22,7 +21,7 @@ class DBProvider{
   initDB() async{
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
       
-    final path = join(documentsDirectory.path, 'ScansDB.db');
+    final path = join( documentsDirectory.path, 'ScansDB.db');
 
     return await openDatabase(
       path,
@@ -30,10 +29,10 @@ class DBProvider{
       onOpen: (db){},
       onCreate: (Database db, int version) async {
         await db.execute(
-          'CREATE TABLE Scans('
-          'id INTEGER PRIMARY KEY,'
-          'tipo TEXT,'
-          'valor TEXT'
+          'CREATE TABLE Scans ('
+          ' id INTEGER PRIMARY KEY,'
+          ' tipo TEXT,'
+          ' valor TEXT'
           ')'
         );
       }
@@ -42,11 +41,11 @@ class DBProvider{
 
   //Create Registry 2 ways
   //1
-  newScanRar(ScanModel scanModel) async{
+  newScanRaw(ScanModel scanModel) async{
     final db = await database;
     final res = await db.rawInsert(
-      "INSERT Into Scans(id,tipo,valor) "
-      "VALUES (${scanModel.id}, '${scanModel.tipo}', '${scanModel.valor}')"
+      "INSERT Into Scans (id, tipo, valor) "
+      "VALUES ( ${scanModel.id}, '${scanModel.tipo}', '${scanModel.valor}' )"
     );
     return res;
   }
