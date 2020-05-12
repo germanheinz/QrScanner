@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qrscanner/pages/directions_page.dart';
 import 'package:qrscanner/pages/maps_page.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -63,9 +64,24 @@ Widget _callPage(int currentPage){
 Widget _creatingButton(){
   return FloatingActionButton(
     backgroundColor: Theme.of(context).primaryColor,
-    onPressed: null,
+    onPressed: _scanQR,
     child: Icon(Icons.filter_center_focus),
   );
 }
 
+_scanQR() async{
+  //geo:40.72423304705168,-73.89607801875003
+  
+  print('Scan QR');
+  dynamic futureString = '';
+  try {
+    futureString = await BarcodeScanner.scan();
+  } catch (e) {
+    futureString = e.toString();
+  }
+  print('future string $futureString');
+  if(futureString != null){
+    print('Future String: ${futureString.rawContent}');
+  }
+}
 }
