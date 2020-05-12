@@ -81,6 +81,13 @@ class DBProvider{
     List<ScanModel> list = res.isNotEmpty ? res.map((c) => ScanModel.fromJson(c)).toList() : [];
     return list;
   }
+  //UPDATE 
+  updateScan(ScanModel scanModel) async {
+    final db  = await database;
+    final res = await db.update('Scans', scanModel.toJson(), where: 'id = ?', whereArgs: [scanModel.id]);
+
+    return res;
+  }
 
 
 
