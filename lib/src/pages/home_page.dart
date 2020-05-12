@@ -23,8 +23,8 @@ Widget build(BuildContext context) {
       title: Text('QR Scanner'),
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.delete_forever), 
-          onPressed: (){},
+          icon: Icon(Icons.delete_forever),
+          onPressed: scansBloc.deleteAllScans,
         ),
       ],
     ),

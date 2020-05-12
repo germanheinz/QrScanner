@@ -21,7 +21,6 @@ class ScansBloc{
   dispose(){
     _scansController?.close();
   }
-
   getAllScans() async {
     _scansController.sink.add( await DBProvider.db.getAllScan());
   }
@@ -30,7 +29,7 @@ class ScansBloc{
    getAllScans(); 
   }
   deleteScan(int id) async {
-    await DBProvider.db.getScanId(id);
+    await DBProvider.db.deleteScan(id);
     getAllScans();
   }
   deleteAllScans() async {
