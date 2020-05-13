@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:qrscanner/src/bloc/scan_bloc.dart';
 import 'package:qrscanner/src/models/scan_model.dart';
 import 'package:qrscanner/src/pages/directions_page.dart';
@@ -78,7 +77,7 @@ Widget _creatingButton(){
 _scanQR(BuildContext context) async{
   print('Scan QR');
   //dynamic futureString = 'http://www.google.com';
-  dynamic futureString = 'geo:40.72423304705168,-73.89607801875003';
+   dynamic futureString = 'geo:40.724233047051705,-74.00731459101564';
   // String futureString = 'http://www.google.com';
   // try {
   //   futureString = await BarcodeScanner.scan();
